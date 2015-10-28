@@ -1,0 +1,12 @@
+{
+  "name": "polymer-FilmsApp",
+  "homepage": "https://github.com/eumendoza/polymerFilmsApp",
+  "authors": [
+    "Eugenio Mendoza <eu.mendoza@gmail.com>"
+  ],
+  "license": "MIT",
+  "version": "0.0.1",
+  "dependencies": {
+    "polymer": "Polymer/polymer#1.1.0"
+  }
+}
