@@ -1,0 +1,27 @@
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="films-service">
+	<template>
+		<iron-ajax
+			auto
+			handle-as="json"
+			url="https://api.themoviedb.org/3/movie/upcoming?api_key=5629f35835568cb20ef10777c9ac65a8&language=es"
+			on-response="getCurrentData"></iron-ajax>
+	</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: 'films-service',
+		properties: {
+			films : Object
+		},
+		ready: function(){
+			console.log(this.films);
+		},
+		getCurrentData: function(event){
+			var response = event.detail.response;
+			this.films = response.results;
+		}
+	});
+</script>
