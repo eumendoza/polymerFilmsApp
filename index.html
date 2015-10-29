@@ -3,27 +3,78 @@
 	<head>
 		<meta charset="utf-8">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>PolyFilms and Series</title>
+		<title>Movies and TV Shows</title>
 		<!-- Polymer files -->
 		<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 		<link rel="import" href="bower_components/polymer/polymer.html">
 		<link rel="import" href="elements/elements.html">
+		<!-- Custom styles -->
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body unresolved>
-		<paper-drawer-panel>
-			<paper-header-panel drawer>
-				<paper-toolbar>
-					<div class="title">Menu</div>
-				</paper-toolbar>
-				<div>Menu content</div>
-			</paper-header-panel>
-			<paper-header-panel main>
-				<paper-toolbar>
-					<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-					<div class="title">PolyFilms and Series</div>
-				</paper-toolbar>
-				<div>Main Content</div>
-			</paper-header-panel>
-		</paper-drawer-panel>
+	<body unresolved class="fullbleed layout vertical">
+		<template is="dom-bind" id="app">
+			<paper-drawer-panel id="paperDrawerPanel">
+
+				<!-- Sidebar -->
+				<paper-header-panel drawer>
+
+					<paper-toolbar>
+						<span class="paper-font-title">Menu</span>
+					</paper-toolbar>
+
+					<paper-menu attr-for-selected="data-route" selected="[[route]]">
+
+						<paper-submenu>
+							<paper-item class="menu-trigger" data-route="movies">
+								<iron-icon icon="image:movie-creation"></iron-icon>
+								<span>Movies</span>
+							</paper-item>
+							<paper-menu class="menu-content sublist" selected="{{filmTab}}">
+								<paper-item><a href="/movies/theaters" class="flex" on-tap="onDataRouteClick"> In Theaters</a></paper-item>
+								<paper-item><a href="/movies/coming-soon" class="flex" on-tap="onDataRouteClick">Coming Soon</a></paper-item>
+							</paper-menu>
+						</paper-submenu>
+ 
+						<paper-item data-route="tv-shows" selected="[[route]]">
+							<a href="/tv-shows" class="flex" on-tap="onDataRouteClick">
+								<iron-icon icon="hardware:tv"></iron-icon>
+								<span>TV Shows</span>
+							</a>
+						</paper-item>
+						
+
+					</paper-menu>
+
+				</paper-header-panel>
+
+				<!-- Main content -->
+
+				<paper-scroll-header-panel main id="headerPanelMain">
+					<paper-toolbar>
+						<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+						<div class="title">[[titleApp]]</div>
+					</paper-toolbar>
+
+					<div class="content">
+						<iron-pages attr-for-selected="data-route" selected="{{route}}">
+						<section data-route="movies">
+							<paper-tabs class="bottom flex" selected="{{filmTab}}">
+								<paper-tab>IN THEATERS</paper-tab>
+								<paper-tab>COMING SOON</paper-tab>
+							</paper-tabs>
+							<iron-pages selected="{{filmTab}}">
+								<div>Tab 1 Content</div>
+								<div>Tab 2 Content</div>
+							</iron-pages>
+						</section>
+						<section data-route="tv-shows">
+							
+						</section>
+					</div>
+
+				</paper-scroll-header-panel>
+			</paper-drawer-panel>
+		</template>
+		<script src="scripts/app.js"></script>
 	</body>
 </html>
