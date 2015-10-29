@@ -1,0 +1,43 @@
+<script src="../bower_components/page/page.js"></script>
+
+<script>
+
+	window.addEventListener('WebComponentsReady', function(){
+		// Middleware
+	    function scrollToTop(ctx, next) {
+	      app.scrollPageToTop();
+	      next();
+	      console.log('hola');
+	    }
+
+		page('/', scrollToTop, function(){
+			page.redirect('/movies');
+		});
+
+		page('/movies', scrollToTop, function(){
+			app.titleApp = 'Movies';
+			page.redirect('/movies/theaters');
+		});
+
+		page('/movies/:name', scrollToTop, function(data){
+			app.titleApp = 'Movies';
+			app.route = 'movies';
+			console.log(data.params);
+		});
+
+		page('/tv-shows', scrollToTop, function(){
+			app.route = 'tv-shows';
+			app.titleApp = 'TV Shows';
+		});
+
+		page('*', function(){
+			page.redirect('/movies');
+		});
+
+		page({
+      		hashbang: true
+    	});
+
+	});
+
+</script>
