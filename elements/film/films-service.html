@@ -1,12 +1,17 @@
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="media-item-film.html">
 
 <dom-module id="films-service">
 	<template>
 		<iron-ajax
 			auto
 			handle-as="json"
-			url="https://api.themoviedb.org/3/movie/upcoming?api_key=5629f35835568cb20ef10777c9ac65a8&language=es"
+			url="https://api.themoviedb.org/3/movie/{{filmstype}}?api_key=5629f35835568cb20ef10777c9ac65a8&language=es"
 			on-response="getCurrentData"></iron-ajax>
+
+		<template is="dom-repeat" items="{{films}}">
+			<media-item-film currentitem="{{item}}"></media-item-film>
+		</template>
+
 	</template>
 </dom-module>
 
@@ -14,10 +19,10 @@
 	Polymer({
 		is: 'films-service',
 		properties: {
-			films : Object
+			films : Object,
+			filmstype: String
 		},
 		ready: function(){
-			console.log(this.films);
 		},
 		getCurrentData: function(event){
 			var response = event.detail.response;
