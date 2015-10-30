@@ -7,7 +7,6 @@
 	    function scrollToTop(ctx, next) {
 	      app.scrollPageToTop();
 	      next();
-	      console.log('hola');
 	    }
 
 		page('/', scrollToTop, function(){
@@ -15,14 +14,8 @@
 		});
 
 		page('/movies', scrollToTop, function(){
+			app.route = "movies";
 			app.titleApp = 'Movies';
-			page.redirect('/movies/theaters');
-		});
-
-		page('/movies/:name', scrollToTop, function(data){
-			app.titleApp = 'Movies';
-			app.route = 'movies';
-			console.log(data.params);
 		});
 
 		page('/tv-shows', scrollToTop, function(){

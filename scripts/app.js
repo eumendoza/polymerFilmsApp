@@ -4,6 +4,7 @@
 	var app = document.querySelector('#app');
 	app.titleApp = 'Movies';
 	app.filmTab = 0;
+	app.tvTab = 0;
 
 	app.scrollPageToTop = function() {
 		app.$.headerPanelMain.scrollToTop(true);
