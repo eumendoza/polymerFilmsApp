@@ -1,14 +1,15 @@
 <dom-module id="media-item-film">
-	<style>
-		iron-image{
-			width:72px;
-			height:72px;
-		};
-		paper-item{
-			padding:5px 8px;
-		};
-	</style>
 	<template>
+		<style>
+			iron-image{
+				width:72px;
+				height:72px;
+			};
+			paper-item{
+				padding:5px 8px;
+			};
+		</style>
+
 		<paper-item>
 		<iron-image sizing="contain" src="http://image.tmdb.org/t/p/w92/{{currentitem.poster_path}}"></iron-image>
 			<paper-item-body two-line>
@@ -16,6 +17,7 @@
 				<div secondary>{{currentitem.release_date}}</div>
 			</paper-item-body>
 		</paper-item>
+		
 	</template>
 </dom-module>
 
