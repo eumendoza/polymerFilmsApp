@@ -1,14 +1,15 @@
 <link rel="import" href="media-item-tv.html">
+<link rel="import" href="../../bower_components/polymer-filters/polymer-filters.html">
 
 <dom-module id="tv-service">
 	<template>
 		<iron-ajax
 			auto
 			handle-as="json"
-			url="https://api.themoviedb.org/3/tv/{{tvtype}}?api_key=5629f35835568cb20ef10777c9ac65a8&language=es"
+			url="https://api.themoviedb.org/3/tv/{{tvtype}}?api_key=5629f35835568cb20ef10777c9ac65a8&language=en"
 			on-response="getCurrentData"></iron-ajax>
 
-		<template is="dom-repeat" items="{{tvshows}}">
+		<template is="dom-repeat" items="{{ _orderBy(tvshows,'original_name') }}">
 			<media-item-tv currentitem="{{item}}"></media-item-tv>
 		</template>
 
@@ -27,6 +28,7 @@
 		getCurrentData: function(event){
 			var response = event.detail.response;
 			this.tvshows = response.results;
-		}
+		},
+		_orderBy: PolymerFilters._orderBy
 	});
 </script>
